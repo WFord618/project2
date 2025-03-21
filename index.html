@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIUX Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav style="background-color: green; padding: 10px;">
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-around;">
+            <li><a href="#about-me" style="color: white; text-decoration: none;">About Me</a></li>
+            <li><a href="#portfolio" style="color: white; text-decoration: none;">Portfolio</a></li>
+            <li><a href="#contact" style="color: white; text-decoration: none;">Contact</a></li>
+        </ul>
+    </nav>
+    <!-- Content goes here -->
+    <section id="about-me">
+        <h1>About Me</h1>
+        <p>Hello! I am Alex Styles.  I am a passionate developer with a background in software engineering and a keen interest in creating user-friendly applications.</p>
+        <h2>Skills</h2>
+        <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Angular</li>
+            <li>Node.js, Express</li>
+            <li>UI/UX Design Principles</li>
+        </ul>
+    </section>
+    <section id="portfolio">
+        <h1>Portfolio</h1>
+        <div class="portfolio-grid">
+            <a href="project1.html" class="portfolio-item" title="View details about Project 1">
+                <img src="images/project1-thumbnail.jpg" alt="Project 1">
+                <p>Project 1</p>
+            </a>
+            <a href="project2.html" class="portfolio-item" title="View details about Project 2">
+                <img src="images/project2-thumbnail.jpg" alt="Project 2">
+                <p>Project 2</p>
+            </a>
+            <a href="project3.html" class="portfolio-item" title="View details about Project 3">
+                <img src="images/project3-thumbnail.jpg" alt="Project 3">
+                <p>Project 3</p>
+            </a>
+            <a href="project4.html" class="portfolio-item" title="View details about Project 4">
+                <img src="images/project4-thumbnail.jpg" alt="Project 4">
+                <p>Project 4</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Modal for project details -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title">Project Title</h2>
+            <p id="modal-description">Detailed project description goes here.</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for modal functionality
+        const modal = document.getElementById('project-modal');
+        const closeButton = document.querySelector('.close-button');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const title = item.querySelector('p').textContent;
+                const description = `Detailed description for ${title}.`; // Replace with actual descriptions
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-description').textContent = description;
+                modal.style.display = 'block';
+            });
+        });
+
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+
+    <section id="contact">
+        <h1>Contact Me</h1>
+        <form action="submit-form.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</body>
+</html>
+
